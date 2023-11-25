@@ -7,7 +7,43 @@ import 'package:provider/provider.dart';
 import 'main_button.dart';
 
 enum PageEnum { main, rules, scenarios, roles, morals, idioms }
-enum DropdownEnum { fontIncrease, fontDecrease, buyVip, shareApp }
+
+enum DropdownEnum { changeFontSize, buyVip, shareApp }
+
+class fontDialog extends StatefulWidget{
+
+  @override
+  State<fontDialog> createState() => _fontDialogState();
+}
+
+class _fontDialogState extends State<fontDialog> {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<AppData>();
+
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("تنظیم انداز فونت"),
+            Slider(
+              value: appState.textFontSize,
+              min: appState.textFontSizeMin,
+              max: appState.textFontSizeMax,
+              label: appState.textFontSize.round().toString(),
+              divisions: 15,
+              onChanged: (newValue){
+                appState.textFontSize = newValue;
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class HelpBar extends StatelessWidget {
   final void Function() backOnPressed;
@@ -28,7 +64,6 @@ class HelpBar extends StatelessWidget {
       underline: const SizedBox.shrink(),
       isExpanded: false,
       customButton: const Icon(Icons.more_vert),
-
       items: [
         for (final item in appState.dropdownMenuList)
           DropdownMenuItem<String>(
@@ -45,10 +80,8 @@ class HelpBar extends StatelessWidget {
         offset: const Offset(0, 8),
       ),
       onChanged: (selected) {
-        if (selected == DropdownEnum.fontIncrease.name){
-          appState.increaseFontSize();
-        }else if (selected == DropdownEnum.fontDecrease.name){
-          appState.decreaseFontSize();
+        if (selected == DropdownEnum.changeFontSize.name) {
+          showDialog(context: context, builder: (BuildContext context) => fontDialog());
         }
       },
     );

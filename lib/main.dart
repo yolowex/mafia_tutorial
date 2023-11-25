@@ -35,35 +35,22 @@ class App extends StatelessWidget {
 
 class AppData extends ChangeNotifier {
   List<(DropdownEnum, String)> dropdownMenuList = [
-    (DropdownEnum.fontIncrease, "افزایش سایز متن"),
-    (DropdownEnum.fontDecrease, "کاهش سایز متن"),
+    (DropdownEnum.changeFontSize, "تنظیم اندازه متن"),
     (DropdownEnum.buyVip, "خرید نسخه وی ای پی"),
     (DropdownEnum.shareApp, "پیشنهاد برنامه به دیگران"),
   ];
 
   double _textFontSize = 20;
-  final double _textFontSizeMax = 30;
-  final double _textFontSizeMin = 12;
+  final double textFontSizeMax = 30;
+  final double textFontSizeMin = 12;
 
   double get textFontSize {
     return _textFontSize;
   }
 
-  void increaseFontSize() {
-    _textFontSize+=2;
-    if (_textFontSize > _textFontSizeMax) {
-      _textFontSize = _textFontSizeMax;
-    }
-
+  set textFontSize(newValue){
+    _textFontSize = newValue;
     notifyListeners();
   }
 
-  void decreaseFontSize() {
-    _textFontSize-=2;
-    if (_textFontSize < _textFontSizeMin) {
-      _textFontSize = _textFontSizeMin;
-    }
-
-    notifyListeners();
-  }
 }
