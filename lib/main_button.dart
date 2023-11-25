@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class MainButton extends StatefulWidget {
   final String text;
+  final void Function()? onClick;
 
-  MainButton(this.text, {super.key});
+  MainButton(this.text,this.onClick, {super.key});
 
   @override
   State<MainButton> createState() => _MainButtonState();
@@ -35,7 +36,7 @@ class _MainButtonState extends State<MainButton> {
         child: InkWell(
           splashColor: const Color.fromARGB(80, 220, 155, 155),
           borderRadius: BorderRadius.circular(20),
-          onTap: () {},
+          onTap: widget.onClick,
           onTapDown: (d) {
             setState(() => isTapping = true);
           },
