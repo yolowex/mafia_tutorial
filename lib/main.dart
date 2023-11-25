@@ -50,7 +50,7 @@ class AppData extends ChangeNotifier {
   }
 
   void increaseFontSize() {
-    _textFontSize++;
+    _textFontSize+=2;
     if (_textFontSize > _textFontSizeMax) {
       _textFontSize = _textFontSizeMax;
     }
@@ -59,7 +59,7 @@ class AppData extends ChangeNotifier {
   }
 
   void decreaseFontSize() {
-    _textFontSize--;
+    _textFontSize-=2;
     if (_textFontSize < _textFontSizeMin) {
       _textFontSize = _textFontSizeMin;
     }

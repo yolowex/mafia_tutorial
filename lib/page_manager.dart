@@ -44,7 +44,13 @@ class HelpBar extends StatelessWidget {
         ),
         offset: const Offset(0, 8),
       ),
-      onChanged: (_) {},
+      onChanged: (selected) {
+        if (selected == DropdownEnum.fontIncrease.name){
+          appState.increaseFontSize();
+        }else if (selected == DropdownEnum.fontDecrease.name){
+          appState.decreaseFontSize();
+        }
+      },
     );
   }
 
