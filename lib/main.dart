@@ -23,50 +23,47 @@ class AppEntry extends StatelessWidget {
 class App extends StatelessWidget {
   const App({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: Scaffold(
-        body: PageManager()
-      ),
+      home: Scaffold(body: PageManager()),
     );
   }
 }
 
 class AppData extends ChangeNotifier {
+  List<(DropdownEnum, String)> dropdownMenuList = [
+    (DropdownEnum.fontIncrease, "افزایش سایز متن"),
+    (DropdownEnum.fontDecrease, "کاهش سایز متن"),
+    (DropdownEnum.buyVip, "خرید نسخه وی ای پی"),
+    (DropdownEnum.shareApp, "پیشنهاد برنامه به دیگران"),
+  ];
+
   double _textFontSize = 20;
-  double _textFontSizeMax = 30;
-  double _textFontSizeMin = 12;
+  final double _textFontSizeMax = 30;
+  final double _textFontSizeMin = 12;
 
   double get textFontSize {
     return _textFontSize;
   }
 
-
-  void increaseFontSize(){
-    _textFontSize ++;
-    if (_textFontSize > _textFontSizeMax){
+  void increaseFontSize() {
+    _textFontSize++;
+    if (_textFontSize > _textFontSizeMax) {
       _textFontSize = _textFontSizeMax;
     }
 
     notifyListeners();
   }
 
-  void decreaseFontSize(){
-    _textFontSize --;
-    if (_textFontSize < _textFontSizeMin){
+  void decreaseFontSize() {
+    _textFontSize--;
+    if (_textFontSize < _textFontSizeMin) {
       _textFontSize = _textFontSizeMin;
     }
 
     notifyListeners();
-
   }
-
-
-
-
-
 }

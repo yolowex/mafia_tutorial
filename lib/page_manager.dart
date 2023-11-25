@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mafia_tutorial/main.dart';
@@ -6,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'main_button.dart';
 
 enum PageEnum { main, rules, scenarios, roles, morals, idioms }
+enum DropdownEnum { fontIncrease, fontDecrease, buyVip, shareApp }
 
 class HelpBar extends StatelessWidget {
   final void Function() backOnPressed;
@@ -19,20 +21,30 @@ class HelpBar extends StatelessWidget {
     );
   }
 
-  Widget dropDown() {
+  Widget dropdown(BuildContext context) {
+    var appState = context.watch<AppData>();
 
-    return DropdownButtonHideUnderline(
-      child: DropdownButton<String>(
-        icon: const Icon(Icons.more_vert),
-        items: [
-          for (final item in ['A', 'B', 'C', 'D'])
-            DropdownMenuItem<String>(
-              value: item,
-              child: Text(item),
-            ),
-        ],
-        onChanged: (_) {},
+    return DropdownButton2(
+      underline: const SizedBox.shrink(),
+      isExpanded: false,
+      customButton: const Icon(Icons.more_vert),
+
+      items: [
+        for (final item in appState.dropdownMenuList)
+          DropdownMenuItem<String>(
+            value: item.$1.name,
+            child: Text(item.$2),
+          ),
+      ],
+      dropdownStyleData: DropdownStyleData(
+        width: 200,
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+        ),
+        offset: const Offset(0, 8),
       ),
+      onChanged: (_) {},
     );
   }
 
@@ -41,7 +53,7 @@ class HelpBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        dropDown(),
+        dropdown(context),
         goBackButton(),
       ],
     );
