@@ -10,8 +10,7 @@ enum PageEnum { main, rules, scenarios, roles, morals, idioms }
 
 enum DropdownEnum { changeFontSize, buyVip, shareApp }
 
-class fontDialog extends StatefulWidget{
-
+class fontDialog extends StatefulWidget {
   @override
   State<fontDialog> createState() => _fontDialogState();
 }
@@ -27,14 +26,14 @@ class _fontDialogState extends State<fontDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text("تنظیم انداز فونت"),
+            const Text("تنظیم انداز متن"),
             Slider(
               value: appState.textFontSize,
               min: appState.textFontSizeMin,
               max: appState.textFontSizeMax,
               label: appState.textFontSize.round().toString(),
               divisions: 15,
-              onChanged: (newValue){
+              onChanged: (newValue) {
                 appState.textFontSize = newValue;
               },
             ),
@@ -47,11 +46,12 @@ class _fontDialogState extends State<fontDialog> {
 
 class HelpBar extends StatelessWidget {
   final void Function() backOnPressed;
-
-  HelpBar({required this.backOnPressed});
+  final Color? iconColor;
+  HelpBar({required this.backOnPressed, this.iconColor});
 
   Widget goBackButton() {
     return IconButton(
+      color: iconColor,
       onPressed: backOnPressed,
       icon: const Icon(Icons.keyboard_return),
     );
@@ -63,7 +63,7 @@ class HelpBar extends StatelessWidget {
     return DropdownButton2(
       underline: const SizedBox.shrink(),
       isExpanded: false,
-      customButton: const Icon(Icons.more_vert),
+      customButton: Icon(Icons.more_vert, color: iconColor),
       items: [
         for (final item in appState.dropdownMenuList)
           DropdownMenuItem<String>(
@@ -81,7 +81,9 @@ class HelpBar extends StatelessWidget {
       ),
       onChanged: (selected) {
         if (selected == DropdownEnum.changeFontSize.name) {
-          showDialog(context: context, builder: (BuildContext context) => fontDialog());
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => fontDialog());
         }
       },
     );
@@ -128,7 +130,9 @@ class _PageManagerState extends State<PageManager> {
             MainButton("قوانین مافیا", () {
               setState(() => currentPageId = PageEnum.rules);
             }),
-            MainButton("سناریو ها", null),
+            MainButton("سناریو ها", () {
+              setState(() => currentPageId = PageEnum.scenarios);
+            }),
             MainButton("نقش ها", null),
             MainButton("مرام نامه مافیا", null),
             MainButton("اصطلاحات", null),
@@ -139,7 +143,45 @@ class _PageManagerState extends State<PageManager> {
     );
   }
 
+  Widget scenariosPage(BuildContext context) {
+    double heightStep = 75;
+    List<MainButton> buttonsList = [MainButton("مافیا ساده", () {}),
+      MainButton("پدرخوانده", () {}),
+      MainButton("تفنگدار", () {}),
+      MainButton("تروریست", () {}),
+      MainButton("بازپرس", () {}),
+      MainButton("مذاکره", () {}),];
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            HelpBar(
+              backOnPressed: () {
+                setState(() {
+                  currentPageId = PageEnum.main;
+                });
+              },
+              iconColor: Colors.red.shade500.withAlpha(200),
+            ),
+            Divider(height: 25, color: Colors.red.shade500.withAlpha(100)),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 80),
+                children: [
+                  for (final item in buttonsList) ...[item, SizedBox(height: heightStep)]
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget rulesPage(BuildContext context) {
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -150,6 +192,7 @@ class _PageManagerState extends State<PageManager> {
                 currentPageId = PageEnum.main;
               });
             }),
+            const Divider(height: 25),
             Expanded(
               child: ListView(
                 children: [
@@ -169,6 +212,10 @@ class _PageManagerState extends State<PageManager> {
 
     if (currentPageId == PageEnum.rules) {
       currentPage = rulesPage;
+    }
+
+    if (currentPageId == PageEnum.scenarios) {
+      currentPage = scenariosPage;
     }
 
     return Container(
