@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main_button.dart';
 import 'package:provider/provider.dart';
-import 'package:mafia_tutorial/page_manager.dart';
+import 'package:mafia_tutorial/pages/page_manager.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 
 void main() {
@@ -44,14 +44,23 @@ class AppData extends ChangeNotifier {
   double _textFontSize = 20;
   final double textFontSizeMax = 30;
   final double textFontSizeMin = 12;
+  PageEnum _currentPageId = PageEnum.main;
+
+  PageEnum get currentPageId {
+    return _currentPageId;
+  }
+
+  set currentPageId(PageEnum newValue) {
+    _currentPageId = newValue;
+    notifyListeners();
+  }
 
   double get textFontSize {
     return _textFontSize;
   }
 
-  set textFontSize(newValue){
+  set textFontSize(newValue) {
     _textFontSize = newValue;
     notifyListeners();
   }
-
 }

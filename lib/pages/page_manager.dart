@@ -1,13 +1,11 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mafia_tutorial/enums.dart';
-import 'package:mafia_tutorial/font_dialog.dart';
 import 'package:mafia_tutorial/help_bar.dart';
 import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
 
-import 'main_button.dart';
+import '../main_button.dart';
 
 class PageManager extends StatefulWidget {
   const PageManager({super.key});
@@ -17,7 +15,6 @@ class PageManager extends StatefulWidget {
 }
 
 class _PageManagerState extends State<PageManager> {
-  PageEnum currentPageId = PageEnum.main;
 
   TextStyle textStyle1(BuildContext context) {
     var appState = context.watch<AppData>();
@@ -27,6 +24,7 @@ class _PageManagerState extends State<PageManager> {
   }
 
   Widget mainPage(BuildContext context) {
+    var appState = context.watch<AppData>();
     return Center(
       child: IntrinsicWidth(
         // stepWidth: 1,
@@ -36,10 +34,10 @@ class _PageManagerState extends State<PageManager> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             MainButton("قوانین مافیا", () {
-              setState(() => currentPageId = PageEnum.rules);
+              appState.currentPageId = PageEnum.rules;
             }),
             MainButton("سناریو ها", () {
-              setState(() => currentPageId = PageEnum.scenarios);
+             appState.currentPageId = PageEnum.scenarios;
             }),
             MainButton("نقش ها", null),
             MainButton("مرام نامه مافیا", null),
@@ -52,6 +50,8 @@ class _PageManagerState extends State<PageManager> {
   }
 
   Widget scenariosPage(BuildContext context) {
+    var appState = context.watch<AppData>();
+
     double heightStep = 75;
     List<MainButton> buttonsList = [MainButton("مافیا ساده", () {}),
       MainButton("پدرخوانده", () {}),
@@ -67,9 +67,9 @@ class _PageManagerState extends State<PageManager> {
           children: [
             HelpBar(
               backOnPressed: () {
-                setState(() {
-                  currentPageId = PageEnum.main;
-                });
+
+                  appState.currentPageId = PageEnum.main;
+
               },
               iconColor: Colors.red.shade500.withAlpha(200),
             ),
@@ -89,6 +89,7 @@ class _PageManagerState extends State<PageManager> {
   }
 
   Widget rulesPage(BuildContext context) {
+    var appState = context.watch<AppData>();
 
     return SafeArea(
       child: Padding(
@@ -96,9 +97,9 @@ class _PageManagerState extends State<PageManager> {
         child: Column(
           children: [
             HelpBar(backOnPressed: () {
-              setState(() {
-                currentPageId = PageEnum.main;
-              });
+
+                appState.currentPageId = PageEnum.main;
+
             }),
             const Divider(height: 25),
             Expanded(
@@ -117,12 +118,14 @@ class _PageManagerState extends State<PageManager> {
   @override
   Widget build(BuildContext context) {
     Function currentPage = mainPage;
+    var appState = context.watch<AppData>();
 
-    if (currentPageId == PageEnum.rules) {
+
+    if (appState.currentPageId == PageEnum.rules) {
       currentPage = rulesPage;
     }
 
-    if (currentPageId == PageEnum.scenarios) {
+    else if (appState.currentPageId == PageEnum.scenarios) {
       currentPage = scenariosPage;
     }
 
