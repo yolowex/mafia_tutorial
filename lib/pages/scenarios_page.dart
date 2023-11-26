@@ -30,6 +30,7 @@ class ScenariosPage extends StatelessWidget{
                 appState.currentPageId = PageEnum.main;
               },
               iconColor: Colors.red.shade500.withAlpha(200),
+              hasFontResize: false,
             ),
             Divider(height: 25, color: Colors.red.shade500.withAlpha(100)),
             Expanded(

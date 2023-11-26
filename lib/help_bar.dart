@@ -8,7 +8,10 @@ import 'package:provider/provider.dart';
 class HelpBar extends StatelessWidget {
   final void Function() backOnPressed;
   final Color? iconColor;
-  HelpBar({required this.backOnPressed, this.iconColor});
+  final bool hasFontResize;
+
+  HelpBar(
+      {required this.backOnPressed, this.iconColor, this.hasFontResize = true});
 
   Widget goBackButton() {
     return IconButton(
@@ -20,13 +23,25 @@ class HelpBar extends StatelessWidget {
 
   Widget dropdown(BuildContext context) {
     var appState = context.watch<AppData>();
+    List<(DropdownEnum, String)> newList = appState.dropdownMenuList.toList();
+    if (!hasFontResize) {
+      (DropdownEnum, String)? target;
+      for (final i in newList) {
+        if (i.$1 == DropdownEnum.changeFontSize) {
+          target = i;
+        }
+      }
+      if (target != null) {
+        newList.remove(target);
+      }
+    }
 
     return DropdownButton2(
       underline: const SizedBox.shrink(),
       isExpanded: false,
       customButton: Icon(Icons.more_vert, color: iconColor),
       items: [
-        for (final item in appState.dropdownMenuList)
+        for (final item in newList)
           DropdownMenuItem<String>(
             value: item.$1.name,
             child: Text(item.$2),
