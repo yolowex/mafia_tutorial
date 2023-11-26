@@ -1,6 +1,7 @@
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
+import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main.dart';
 import 'package:mafia_tutorial/role_card.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,13 @@ class CardDialog extends StatelessWidget {
                             height: 35,
                             alignment: Alignment.center,
                             padding: const EdgeInsets.all(0.0),
-                            child: Text(cardData.name),
+                            child: Text(cardData.name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: cardData.side == MafiaSideEnum.citizens
+                                    ? Colors.black
+                                    : Colors.white,
+                              ),),
                           ),
                           // Text(cardData.name),
                         ],

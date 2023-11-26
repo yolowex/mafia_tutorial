@@ -42,7 +42,15 @@ class RoleCard extends StatelessWidget {
               height: 35,
               alignment: Alignment.center,
               padding: const EdgeInsets.all(0.0),
-              child: Text(cardData.name),
+              child: Text(
+                cardData.name,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: cardData.side == MafiaSideEnum.citizens
+                      ? Colors.black
+                      : Colors.white,
+                ),
+              ),
             ),
             Positioned.fill(
                 child: Material(
