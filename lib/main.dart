@@ -35,8 +35,13 @@ class App extends StatelessWidget {
 }
 
 class AppData extends ChangeNotifier {
+  (DropdownEnum, String) fontResize =
+      (DropdownEnum.changeFontSize, "تنظیم اندازه متن");
+
+  (DropdownEnum, String) columnAdjust =
+      (DropdownEnum.adjustColumn, "تنظیم ستون");
+
   List<(DropdownEnum, String)> dropdownMenuList = [
-    (DropdownEnum.changeFontSize, "تنظیم اندازه متن"),
     (DropdownEnum.buyVip, "خرید نسخه وی ای پی"),
     (DropdownEnum.shareApp, "پیشنهاد برنامه به دیگران"),
   ];
@@ -45,6 +50,19 @@ class AppData extends ChangeNotifier {
   final double textFontSizeMax = 30;
   final double textFontSizeMin = 12;
   PageEnum _currentPageId = PageEnum.main;
+
+  double _columnCount = 2;
+  final double columnCountMin = 1;
+  final double columnCountMax = 3;
+
+  double get columnCount {
+    return _columnCount;
+  }
+
+  set columnCount(double newValue) {
+    _columnCount = newValue;
+    notifyListeners();
+  }
 
   PageEnum get currentPageId {
     return _currentPageId;

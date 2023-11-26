@@ -1,5 +1,6 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:mafia_tutorial/column_adjust_dialog.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/font_dialog.dart';
 import 'package:mafia_tutorial/main.dart';
@@ -9,9 +10,14 @@ class HelpBar extends StatelessWidget {
   final void Function() backOnPressed;
   final Color? iconColor;
   final bool hasFontResize;
+  final bool hasColumnAdjust;
 
-  HelpBar(
-      {required this.backOnPressed, this.iconColor, this.hasFontResize = true});
+  HelpBar({
+    required this.backOnPressed,
+    this.iconColor,
+    this.hasFontResize = true,
+    this.hasColumnAdjust = false,
+  });
 
   Widget goBackButton() {
     return IconButton(
@@ -24,16 +30,12 @@ class HelpBar extends StatelessWidget {
   Widget dropdown(BuildContext context) {
     var appState = context.watch<AppData>();
     List<(DropdownEnum, String)> newList = appState.dropdownMenuList.toList();
-    if (!hasFontResize) {
-      (DropdownEnum, String)? target;
-      for (final i in newList) {
-        if (i.$1 == DropdownEnum.changeFontSize) {
-          target = i;
-        }
-      }
-      if (target != null) {
-        newList.remove(target);
-      }
+    if (hasFontResize) {
+      newList.insert(0, appState.fontResize);
+    }
+
+    if (hasColumnAdjust) {
+      newList.insert(0, appState.columnAdjust);
     }
 
     return DropdownButton2(
@@ -60,6 +62,11 @@ class HelpBar extends StatelessWidget {
           showDialog(
               context: context,
               builder: (BuildContext context) => fontDialog());
+        }
+        if (selected == DropdownEnum.adjustColumn.name) {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => ColumnAdjustDialog());
         }
       },
     );
