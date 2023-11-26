@@ -63,4 +63,11 @@ class AppData extends ChangeNotifier {
     _textFontSize = newValue;
     notifyListeners();
   }
+
+  TextStyle mainTextStyle(BuildContext context) {
+    var appState = context.watch<AppData>();
+    return TextStyle(
+      fontSize: appState.textFontSize,
+    );
+  }
 }
