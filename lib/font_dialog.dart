@@ -24,7 +24,8 @@ class _fontDialogState extends State<fontDialog> {
               min: appState.textFontSizeMin,
               max: appState.textFontSizeMax,
               label: appState.textFontSize.round().toString(),
-              divisions: (appState.textFontSizeMax - appState.textFontSizeMin).toInt(),
+              divisions:
+                  (appState.textFontSizeMax - appState.textFontSizeMin).toInt(),
               onChanged: (newValue) {
                 appState.textFontSize = newValue;
               },

@@ -27,9 +27,27 @@ class RolesPage extends StatelessWidget{
               mainAxisSpacing: 15,
               crossAxisCount: 2,
               children: <Widget>[
-                for (final _ in List.filled(25, 0))
-                  RoleCard()
-              ],
+                for (final _ in List.filled(7, 0))
+                  RoleCard(
+                   name: "Mafia",
+                   side: MafiaSideEnum.mafia
+                  )
+                ,
+
+                for (final _ in List.filled(7, 0))
+                  RoleCard(
+                      name: "Citizens",
+                      side: MafiaSideEnum.citizens
+                  )
+
+                ,
+                for (final _ in List.filled(3, 0))
+                  RoleCard(
+                      name: "Independent",
+                      side: MafiaSideEnum.independent
+                  )
+
+                  ],
             )
           ),
         ],
