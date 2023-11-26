@@ -3,6 +3,7 @@ import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/help_bar.dart';
 import 'package:mafia_tutorial/main.dart';
+import 'package:mafia_tutorial/pages/roles_page.dart';
 import 'package:mafia_tutorial/pages/rules_page.dart';
 import 'package:mafia_tutorial/pages/scenarios_page.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +34,9 @@ class _PageManagerState extends State<PageManager> {
             MainButton("سناریو ها", () {
               appState.currentPageId = PageEnum.scenarios;
             }),
-            MainButton("نقش ها", null),
+            MainButton("نقش ها", () {
+              appState.currentPageId = PageEnum.roles;
+            }),
             MainButton("مرام نامه مافیا", null),
             MainButton("اصطلاحات", null),
             MainButton("تکنیک ها", null),
@@ -52,6 +55,8 @@ class _PageManagerState extends State<PageManager> {
       currentPage = RulesPage();
     } else if (appState.currentPageId == PageEnum.scenarios) {
       currentPage = ScenariosPage();
+    } else if (appState.currentPageId == PageEnum.roles) {
+      currentPage = RolesPage();
     } else {
       currentPage = mainPage(context);
     }
