@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main_button.dart';
 import 'package:provider/provider.dart';
 import 'package:mafia_tutorial/page_manager.dart';
