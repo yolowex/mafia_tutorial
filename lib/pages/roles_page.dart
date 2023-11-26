@@ -31,11 +31,19 @@ class RolesPage extends StatelessWidget {
             crossAxisCount: appState.columnCount.toInt(),
             children: <Widget>[
               for (final _ in List.filled(7, 0))
-                RoleCard(name: "Mafia", side: MafiaSideEnum.mafia),
+                RoleCard(
+                  cardData: CardData(name: "Mafia", side: MafiaSideEnum.mafia),
+                ),
               for (final _ in List.filled(7, 0))
-                RoleCard(name: "Citizens", side: MafiaSideEnum.citizens),
+                RoleCard(
+                  cardData:
+                      CardData(name: "Citizens", side: MafiaSideEnum.citizens),
+                ),
               for (final _ in List.filled(3, 0))
-                RoleCard(name: "Independent", side: MafiaSideEnum.independent)
+                RoleCard(
+                  cardData: CardData(
+                      name: "Independent", side: MafiaSideEnum.independent),
+                )
             ],
           )),
         ],

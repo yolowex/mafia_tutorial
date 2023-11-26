@@ -60,13 +60,15 @@ class HelpBar extends StatelessWidget {
       onChanged: (selected) {
         if (selected == DropdownEnum.changeFontSize.name) {
           showDialog(
-              context: context,
-              builder: (BuildContext context) => fontDialog());
+            context: context,
+            builder: (BuildContext context) => fontDialog(),
+          );
         }
         if (selected == DropdownEnum.adjustColumn.name) {
           showDialog(
-              context: context,
-              builder: (BuildContext context) => ColumnAdjustDialog());
+            context: context,
+            builder: (BuildContext context) => ColumnAdjustDialog(),
+          );
         }
       },
     );
@@ -77,8 +79,14 @@ class HelpBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        dropdown(context),
-        goBackButton(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: dropdown(context),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: goBackButton(),
+        ),
       ],
     );
   }

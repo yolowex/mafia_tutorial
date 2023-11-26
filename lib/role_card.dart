@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:mafia_tutorial/card_dialog.dart';
 import 'package:mafia_tutorial/enums.dart';
 
-class RoleCard extends StatelessWidget {
+class CardData {
   final String name;
   final String? details;
   final MafiaSideEnum side;
 
-  RoleCard({required this.name, this.details, required this.side});
+  CardData({required this.name, this.details, required this.side});
+}
+
+class RoleCard extends StatelessWidget {
+  final CardData cardData;
+
+  RoleCard({required this.cardData});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +21,8 @@ class RoleCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         border: Border.all(
-            width: 5, color: Color.lerp(side.color, Colors.black, 0.5)!),
+            width: 5,
+            color: Color.lerp(cardData.side.color, Colors.black, 0.5)!),
         image: const DecorationImage(
             image: AssetImage("assets/images/pic.jpg"), fit: BoxFit.fill),
       ),
@@ -29,19 +37,25 @@ class RoleCard extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             Container(
-              color: side.color.withAlpha(125),
+              color: cardData.side.color.withAlpha(125),
               width: double.infinity,
               height: 35,
               alignment: Alignment.center,
               padding: const EdgeInsets.all(0.0),
-              child: Text(name),
+              child: Text(cardData.name),
             ),
             Positioned.fill(
                 child: Material(
               color: Colors.transparent,
               child: InkWell(
-                splashColor: side.color.withAlpha(125),
-                onTap: () {},
+                splashColor: cardData.side.color.withAlpha(125),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CardDialog(cardData);
+                      });
+                },
               ),
             )),
           ],
