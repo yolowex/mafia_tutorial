@@ -4,7 +4,7 @@ class MainButton extends StatefulWidget {
   final String text;
   final void Function()? onClick;
 
-  MainButton(this.text,this.onClick, {super.key});
+  MainButton(this.text, this.onClick, {super.key});
 
   @override
   State<MainButton> createState() => _MainButtonState();
@@ -21,7 +21,7 @@ class _MainButtonState extends State<MainButton> {
   @override
   Widget build(BuildContext context) {
     // todo: find bug reason
-    var currentStyle = isTapping? textStyle2 : textStyle1;
+    var currentStyle = isTapping ? textStyle2 : textStyle1;
 
     return Container(
       decoration: BoxDecoration(
@@ -43,18 +43,13 @@ class _MainButtonState extends State<MainButton> {
           onTapUp: (d) {
             setState(() => isTapping = false);
           },
-          onTapCancel: (
-
-              ) {
+          onTapCancel: () {
             setState(() => isTapping = false);
           },
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(4.0),
-              child: Text(
-                widget.text,
-                style: currentStyle
-              ),
+              child: Text(widget.text, style: currentStyle),
             ),
           ),
         ),
