@@ -1,8 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:mafia_tutorial/column_adjust_dialog.dart';
+import 'package:mafia_tutorial/dialogs/column_adjust_dialog.dart';
 import 'package:mafia_tutorial/enums.dart';
-import 'package:mafia_tutorial/font_dialog.dart';
+import 'package:mafia_tutorial/dialogs/font_dialog.dart';
 import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
 

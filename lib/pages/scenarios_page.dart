@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/help_bar.dart';
 import 'package:mafia_tutorial/main_button.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
 import 'package:provider/provider.dart';
 import 'package:mafia_tutorial/main.dart';
 
@@ -10,14 +19,17 @@ class ScenariosPage extends StatelessWidget{
   Widget build(BuildContext context) {
     var appState = context.watch<AppData>();
 
-    double heightStep = 75;
-    List<MainButton> buttonsList = [
-      MainButton("مافیا ساده", () {}),
-      MainButton("پدرخوانده", () {}),
-      MainButton("تفنگدار", () {}),
-      MainButton("تروریست", () {}),
-      MainButton("بازپرس", () {}),
-      MainButton("مذاکره", () {}),
+    double heightStep = 15;
+    List<ScenarioCard> scenariosList = [
+      ScenarioCard(ScenarioData("مافیا ساده"), () {}),
+      ScenarioCard(ScenarioData("پدرخوانده"), () {}),
+      ScenarioCard(ScenarioData("تفنگدار"), () {}),
+      ScenarioCard(ScenarioData("تروریست"), () {}),
+      ScenarioCard(ScenarioData("بازپرس"), () {}),
+      ScenarioCard(ScenarioData("مذاکره"), () {}),
+      ScenarioCard(ScenarioData("فراماسون"), () {}),
+      ScenarioCard(ScenarioData("گرگینه"), () {}),
+      ScenarioCard(ScenarioData("جوکر"), () {}),
     ];
 
     return SafeArea(
@@ -29,15 +41,14 @@ class ScenariosPage extends StatelessWidget{
               backOnPressed: () {
                 appState.currentPageId = PageEnum.main;
               },
-              iconColor: Colors.red.shade500.withAlpha(200),
               hasFontResize: false,
             ),
-            Divider(height: 25, color: Colors.red.shade500.withAlpha(100)),
+            const Divider(height: 25),
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 80),
+                // padding: const EdgeInsets.symmetric(horizontal: 80),
                 children: [
-                  for (final item in buttonsList) ...[
+                  for (final item in scenariosList) ...[
                     item,
                     SizedBox(height: heightStep)
                   ]

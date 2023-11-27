@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mafia_tutorial/card_dialog.dart';
+import 'package:mafia_tutorial/dialogs/card_dialog.dart';
 import 'package:mafia_tutorial/enums.dart';
 
 import 'pages/picture_dialog.dart';
@@ -10,7 +10,7 @@ class CardData {
   final MafiaSideEnum side;
   final String picPath;
 
-  CardData({
+  const CardData({
     required this.name,
     this.details,
     required this.side,

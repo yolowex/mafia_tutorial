@@ -21,19 +21,6 @@ class AppEntry extends StatelessWidget {
   }
 }
 
-class App extends StatelessWidget {
-  const App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: Scaffold(body: PageManager()),
-    );
-  }
-}
-
 class AppData extends ChangeNotifier {
   (DropdownEnum, String) fontResize =
       (DropdownEnum.changeFontSize, "تنظیم اندازه متن");
@@ -46,7 +33,10 @@ class AppData extends ChangeNotifier {
     (DropdownEnum.shareApp, "پیشنهاد برنامه به دیگران"),
   ];
 
-  double _textFontSize = 20;
+  final double h2FontSize = 21;
+  final double h1FontSize = 23;
+
+  double _textFontSize = 19;
   final double textFontSizeMax = 30;
   final double textFontSizeMin = 12;
   PageEnum _currentPageId = PageEnum.main;
@@ -86,6 +76,32 @@ class AppData extends ChangeNotifier {
     var appState = context.watch<AppData>();
     return TextStyle(
       fontSize: appState.textFontSize,
+    );
+  }
+
+  TextStyle h2TextStyle(BuildContext context) {
+    var appState = context.watch<AppData>();
+    return TextStyle(
+      fontSize: appState.h2FontSize,
+    );
+  }
+
+  TextStyle h1TextStyle(BuildContext context) {
+    var appState = context.watch<AppData>();
+    return TextStyle(
+        fontSize: appState.h1FontSize, fontWeight: FontWeight.w500);
+  }
+}
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
+      home: Scaffold(body: PageManager()),
     );
   }
 }
