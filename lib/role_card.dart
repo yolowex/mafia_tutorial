@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mafia_tutorial/dialogs/card_dialog.dart';
 import 'package:mafia_tutorial/enums.dart';
 
-import 'pages/picture_dialog.dart';
+import 'dialogs/picture_dialog.dart';
 
 class CardData {
   final String name;

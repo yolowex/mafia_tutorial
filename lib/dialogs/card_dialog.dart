@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main.dart';
-import 'package:mafia_tutorial/pages/picture_dialog.dart';
+import 'package:mafia_tutorial/dialogs/picture_dialog.dart';
 import 'package:mafia_tutorial/role_card.dart';
 import 'package:provider/provider.dart';
 
