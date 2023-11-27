@@ -13,7 +13,7 @@ class PictureDialog extends StatelessWidget{
     var appState = context.watch<AppData>();
 
     return Dialog(
-      child: Image.asset("assets/images/pic.jpg"),
+      child: Image.asset(cardData.picPath),
     );
   }
 }

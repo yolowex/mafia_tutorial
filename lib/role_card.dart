@@ -8,8 +8,14 @@ class CardData {
   final String name;
   final String? details;
   final MafiaSideEnum side;
+  final String picPath;
 
-  CardData({required this.name, this.details, required this.side});
+  CardData({
+    required this.name,
+    this.details,
+    required this.side,
+    this.picPath = "assets/images/pic.jpg",
+  });
 }
 
 class RoleCard extends StatelessWidget {
@@ -25,8 +31,8 @@ class RoleCard extends StatelessWidget {
         border: Border.all(
             width: 5,
             color: Color.lerp(cardData.side.color, Colors.black, 0.5)!),
-        image: const DecorationImage(
-            image: AssetImage("assets/images/pic.jpg"), fit: BoxFit.fill),
+        image: DecorationImage(
+            image: AssetImage(cardData.picPath), fit: BoxFit.fill),
       ),
       child: ClipRRect(
         borderRadius: const BorderRadius.only(

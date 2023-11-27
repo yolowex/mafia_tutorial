@@ -43,7 +43,7 @@ class CardDialog extends StatelessWidget {
                       alignment: Alignment.bottomCenter,
                       children: [
                         Image.asset(
-                          'assets/images/pic.jpg',
+                          cardData.picPath,
                           fit: BoxFit.fill,
                         ),
                         Container(
