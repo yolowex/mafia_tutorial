@@ -59,7 +59,7 @@ class ScenarioCard extends StatelessWidget {
 
     return Container(
         decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
+            color: Theme.of(context).cardColor.withAlpha(200),
             border: Border.all(width: 4),
             borderRadius: BorderRadius.circular(15)),
         child: Padding(

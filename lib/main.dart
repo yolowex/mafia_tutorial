@@ -1,16 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main_button.dart';
 import 'package:provider/provider.dart';
 import 'package:mafia_tutorial/pages/page_manager.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
+import 'package:xml/xml.dart';
+import 'dart:io';
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show rootBundle;
 
 void main() {
   runApp(AppEntry());
 }
 
-class AppEntry extends StatelessWidget {
-  const AppEntry({super.key});
+class AppEntry extends StatefulWidget {
+  AppEntry({super.key});
+
+  @override
+  State<AppEntry> createState() => _AppEntryState();
+}
+
+class _AppEntryState extends State<AppEntry> {
+  Future<String> loadAsset() async {
+    return await rootBundle.loadString('assets/data/roles.xml');
+  }
+
+  void doAsync() async {
+    String xml = await loadAsset();
+    final document = XmlDocument.parse(xml);
+  }
+
+  @override
+  void initState() {
+    doAsync();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
