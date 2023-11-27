@@ -3,7 +3,7 @@ import 'package:mafia_tutorial/main.dart';
 import 'package:mafia_tutorial/role_card.dart';
 import 'package:provider/provider.dart';
 
-class PictureDialog extends StatelessWidget{
+class PictureDialog extends StatelessWidget {
   final CardData cardData;
 
   PictureDialog(this.cardData);

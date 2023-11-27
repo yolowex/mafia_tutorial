@@ -14,7 +14,7 @@ import 'package:mafia_tutorial/scenario_card.dart';
 import 'package:provider/provider.dart';
 import 'package:mafia_tutorial/main.dart';
 
-class ScenariosPage extends StatelessWidget{
+class ScenariosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<AppData>();
@@ -60,5 +60,4 @@ class ScenariosPage extends StatelessWidget{
       ),
     );
   }
-
 }

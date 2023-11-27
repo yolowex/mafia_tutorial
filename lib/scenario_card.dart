@@ -25,6 +25,26 @@ class ScenarioData {
     hasIndependent = false;
     difficultyLevel = DifficultyLevel.easy;
   }
+
+  String get scenarioText {
+    return "سناریو: " + name;
+  }
+
+  String get playersCountText {
+    return "تعداد افراد: " +
+        minPlayers.toString() +
+        "~" +
+        maxPlayers.toString();
+  }
+
+  String get hasIndependentText {
+    String t = hasIndependent ? "دارد" : "ندارد";
+    return "ساید مستقل: " + t;
+  }
+
+  String get levelText {
+    return "سطح: " + difficultyLevel.text;
+  }
 }
 
 class ScenarioCard extends StatelessWidget {
@@ -59,17 +79,13 @@ class ScenarioCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text("سناریو: " + data.name,
+                          Text(data.scenarioText,
                               style: appState.h1TextStyle(context)),
-                          Text(
-                              "تعداد افراد: " +
-                                  data.minPlayers.toString() +
-                                  "~" +
-                                  data.maxPlayers.toString(),
+                          Text(data.playersCountText,
                               style: appState.h1TextStyle(context)),
-                          Text("ساید مستقل: " + data.hasIndependent.toString(),
+                          Text(data.hasIndependentText,
                               style: appState.h1TextStyle(context)),
-                          Text("سطح: " + data.difficultyLevel.text,
+                          Text(data.levelText,
                               style: appState.h1TextStyle(context)),
                         ],
                       ),

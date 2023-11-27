@@ -5,8 +5,7 @@ import 'package:mafia_tutorial/help_bar.dart';
 import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
 
-class RulesPage extends StatelessWidget{
-
+class RulesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<AppData>();
@@ -17,15 +16,14 @@ class RulesPage extends StatelessWidget{
         child: Column(
           children: [
             HelpBar(backOnPressed: () {
-
               appState.currentPageId = PageEnum.main;
-
             }),
             const Divider(height: 25),
             Expanded(
               child: ListView(
                 children: [
-                  Text(loremIpsum(words: 200), style: appState.mainTextStyle(context))
+                  Text(loremIpsum(words: 200),
+                      style: appState.mainTextStyle(context))
                 ],
               ),
             ),

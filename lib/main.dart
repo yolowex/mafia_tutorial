@@ -101,7 +101,12 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: Scaffold(body: PageManager()),
+      home: WillPopScope(
+        onWillPop: () async => false,
+        child: const Scaffold(
+          body: PageManager(),
+        ),
+      ),
     );
   }
 }
