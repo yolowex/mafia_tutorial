@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main.dart';
+import 'package:mafia_tutorial/pages/picture_dialog.dart';
 import 'package:mafia_tutorial/role_card.dart';
 import 'package:provider/provider.dart';
 
@@ -34,32 +35,54 @@ class CardDialog extends StatelessWidget {
                 style: appState.mainTextStyle(context),
                 loremIpsum(words: 100, paragraphs: 4),
                 dropCap: DropCap(
-                    width: 125,
-                    height: 125,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Stack(
-                        alignment: Alignment.bottomCenter,
-                        children: [
-                          Image.asset('assets/images/pic.jpg'),
-                          Container(
-                            color: cardData.side.color.withAlpha(125),
-                            width: double.infinity,
-                            height: 35,
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.all(0.0),
-                            child: Text(cardData.name,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: cardData.side == MafiaSideEnum.citizens
-                                    ? Colors.black
-                                    : Colors.white,
-                              ),),
+                  width: 130,
+                  height: 130,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10, top: 5),
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        Image.asset(
+                          'assets/images/pic.jpg',
+                          fit: BoxFit.fill,
+                        ),
+                        Container(
+                          color: cardData.side.color.withAlpha(125),
+                          width: double.infinity,
+                          height: 35,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(0.0),
+                          child: Text(
+                            cardData.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: cardData.side == MafiaSideEnum.citizens
+                                  ? Colors.black
+                                  : Colors.white,
+                            ),
                           ),
-                          // Text(cardData.name),
-                        ],
-                      ),
-                    )),
+                        ),
+                        Positioned.fill(
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              splashColor: cardData.side.color.withAlpha(125),
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return PictureDialog(cardData);
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        // Text(cardData.name),
+                      ],
+                    ),
+                  ),
+                ),
               )
             ],
           ),

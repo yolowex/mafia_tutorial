@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mafia_tutorial/card_dialog.dart';
 import 'package:mafia_tutorial/enums.dart';
 
+import 'pages/picture_dialog.dart';
+
 class CardData {
   final String name;
   final String? details;
@@ -53,19 +55,28 @@ class RoleCard extends StatelessWidget {
               ),
             ),
             Positioned.fill(
-                child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                splashColor: cardData.side.color.withAlpha(125),
-                onTap: () {
-                  showDialog(
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  splashColor: cardData.side.color.withAlpha(125),
+                  onLongPress: () {
+                    showDialog(
                       context: context,
                       builder: (BuildContext context) {
-                        return CardDialog(cardData);
-                      });
-                },
+                        return PictureDialog(cardData);
+                      },
+                    );
+                  },
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return CardDialog(cardData);
+                        });
+                  },
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ),
