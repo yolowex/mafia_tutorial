@@ -6,7 +6,8 @@ import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
 
 class MoralsPage extends StatelessWidget {
-  const MoralsPage({super.key});
+  final Function onBackPressed;
+  const MoralsPage({super.key, required this.onBackPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MoralsPage extends StatelessWidget {
           children: [
             HelpBar(
                 backOnPressed: () {
-                  appState.currentPageId = PageEnum.main;
+                  onBackPressed();
                 },
                 text: "مرام نامه مافیا"),
             const Divider(height: 25),

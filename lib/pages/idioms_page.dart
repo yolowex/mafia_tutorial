@@ -6,7 +6,9 @@ import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
 
 class IdiomsPage extends StatelessWidget {
-  const IdiomsPage({super.key});
+  final Function onBackPressed;
+
+  const IdiomsPage({super.key, required this.onBackPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,9 @@ class IdiomsPage extends StatelessWidget {
           children: [
             HelpBar(
               backOnPressed: () {
-                appState.currentPageId = PageEnum.main;
+                onBackPressed();
               },
-              text: "نقش ها",
+              text: "اصطلاحات",
             ),
             const Divider(height: 25),
             Expanded(

@@ -15,6 +15,9 @@ import 'package:provider/provider.dart';
 import 'package:mafia_tutorial/main.dart';
 
 class ScenariosPage extends StatelessWidget {
+  final Function onBackPressed;
+  const ScenariosPage({super.key, required this.onBackPressed});
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<AppData>();
@@ -39,7 +42,7 @@ class ScenariosPage extends StatelessWidget {
           children: [
             HelpBar(
               backOnPressed: () {
-                appState.currentPageId = PageEnum.main;
+                onBackPressed();
               },
               text: "سناریو ها",
             ),

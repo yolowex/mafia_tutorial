@@ -39,6 +39,16 @@ class _AppEntryState extends State<AppEntry> {
 }
 
 class AppData extends ChangeNotifier {
+  void Function()? _onBackPressed;
+
+  void Function()? get onBackPressed {
+    return _onBackPressed;
+  }
+
+  set onBackPressed(void Function()? newValue) {
+    _onBackPressed = newValue;
+  }
+
   List<CardData> rolesList = [];
 
   (DropdownEnum, String) fontResize =
@@ -58,7 +68,6 @@ class AppData extends ChangeNotifier {
   double _textFontSize = 19;
   final double textFontSizeMax = 30;
   final double textFontSizeMin = 12;
-  PageEnum _currentPageId = PageEnum.main;
 
   double _columnCount = 2;
   final double columnCountMin = 1;
@@ -70,15 +79,6 @@ class AppData extends ChangeNotifier {
 
   set columnCount(double newValue) {
     _columnCount = newValue;
-    notifyListeners();
-  }
-
-  PageEnum get currentPageId {
-    return _currentPageId;
-  }
-
-  set currentPageId(PageEnum newValue) {
-    _currentPageId = newValue;
     notifyListeners();
   }
 
@@ -153,6 +153,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<AppData>();
     if (!didLoadAssets) {
       doAsync(context);
       didLoadAssets = true;
@@ -171,8 +172,13 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       home: WillPopScope(
-        onWillPop: () async => false,
-        child: const Scaffold(
+        onWillPop: () async {
+          if (appState.onBackPressed != null) {
+            appState.onBackPressed!();
+          }
+          return false;
+        },
+        child: Scaffold(
           body: PageManager(),
         ),
       ),

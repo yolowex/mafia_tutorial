@@ -7,6 +7,9 @@ import 'package:mafia_tutorial/role_card.dart';
 import 'package:provider/provider.dart';
 
 class RolesPage extends StatelessWidget {
+  final Function onBackPressed;
+  const RolesPage({super.key, required this.onBackPressed});
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<AppData>();
@@ -16,7 +19,7 @@ class RolesPage extends StatelessWidget {
         children: [
           HelpBar(
               backOnPressed: () {
-                appState.currentPageId = PageEnum.main;
+                onBackPressed();
               },
               hasColumnAdjust: true,
               text: "نقش ها"),

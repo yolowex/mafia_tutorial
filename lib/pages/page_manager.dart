@@ -14,13 +14,25 @@ import 'package:provider/provider.dart';
 import '../main_button.dart';
 
 class PageManager extends StatefulWidget {
-  const PageManager({super.key});
+  PageManager({super.key});
+
+  PageEnum _currentPageId = PageEnum.main;
 
   @override
   State<PageManager> createState() => _PageManagerState();
 }
 
 class _PageManagerState extends State<PageManager> {
+  PageEnum get currentPageId {
+    return widget._currentPageId;
+  }
+
+  set currentPageId(PageEnum newValue) {
+    setState(() {
+      widget._currentPageId = newValue;
+    });
+  }
+
   Widget mainPage(BuildContext context) {
     var appState = context.watch<AppData>();
     return Center(
@@ -32,22 +44,22 @@ class _PageManagerState extends State<PageManager> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             MainButton("قوانین مافیا", () {
-              appState.currentPageId = PageEnum.rules;
+              currentPageId = PageEnum.rules;
             }),
             MainButton("سناریو ها", () {
-              appState.currentPageId = PageEnum.scenarios;
+              currentPageId = PageEnum.scenarios;
             }),
             MainButton("نقش ها", () {
-              appState.currentPageId = PageEnum.roles;
+              currentPageId = PageEnum.roles;
             }),
             MainButton("اصطلاحات", () {
-              appState.currentPageId = PageEnum.idioms;
+              currentPageId = PageEnum.idioms;
             }),
             MainButton("تکنیک های آموزشی", () {
-              appState.currentPageId = PageEnum.techniques;
+              currentPageId = PageEnum.techniques;
             }),
             MainButton("مرام نامه مافیا", () {
-              appState.currentPageId = PageEnum.morals;
+              currentPageId = PageEnum.morals;
             }),
           ],
         ),
@@ -55,23 +67,40 @@ class _PageManagerState extends State<PageManager> {
     );
   }
 
+  void onBackPressed() {
+    currentPageId = PageEnum.main;
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget currentPage;
     var appState = context.watch<AppData>();
+    appState.onBackPressed ??= onBackPressed;
 
-    if (appState.currentPageId == PageEnum.rules) {
-      currentPage = RulesPage();
-    } else if (appState.currentPageId == PageEnum.scenarios) {
-      currentPage = ScenariosPage();
-    } else if (appState.currentPageId == PageEnum.roles) {
-      currentPage = RolesPage();
-    } else if (appState.currentPageId == PageEnum.idioms) {
-      currentPage = IdiomsPage();
-    } else if (appState.currentPageId == PageEnum.morals) {
-      currentPage = MoralsPage();
-    } else if (appState.currentPageId == PageEnum.techniques) {
-      currentPage = TechniquesPage();
+    if (currentPageId == PageEnum.rules) {
+      currentPage = RulesPage(
+        onBackPressed: onBackPressed,
+      );
+    } else if (currentPageId == PageEnum.scenarios) {
+      currentPage = ScenariosPage(
+        onBackPressed: onBackPressed,
+      );
+    } else if (currentPageId == PageEnum.roles) {
+      currentPage = RolesPage(
+        onBackPressed: onBackPressed,
+      );
+    } else if (currentPageId == PageEnum.idioms) {
+      currentPage = IdiomsPage(
+        onBackPressed: onBackPressed,
+      );
+    } else if (currentPageId == PageEnum.morals) {
+      currentPage = MoralsPage(
+        onBackPressed: onBackPressed,
+      );
+    } else if (currentPageId == PageEnum.techniques) {
+      currentPage = TechniquesPage(
+        onBackPressed: onBackPressed,
+      );
     } else {
       currentPage = mainPage(context);
     }

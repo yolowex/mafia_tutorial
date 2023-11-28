@@ -6,7 +6,8 @@ import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
 
 class TechniquesPage extends StatelessWidget {
-  const TechniquesPage({super.key});
+  final Function onBackPressed;
+  const TechniquesPage({super.key, required this.onBackPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class TechniquesPage extends StatelessWidget {
           children: [
             HelpBar(
               backOnPressed: () {
-                appState.currentPageId = PageEnum.main;
+                onBackPressed();
               },
               text: "تکنیک های آموزشی",
             ),
