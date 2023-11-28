@@ -11,13 +11,14 @@ class HelpBar extends StatelessWidget {
   final Color? iconColor;
   final bool hasFontResize;
   final bool hasColumnAdjust;
+  final String text;
 
-  HelpBar({
-    required this.backOnPressed,
-    this.iconColor,
-    this.hasFontResize = true,
-    this.hasColumnAdjust = false,
-  });
+  HelpBar(
+      {required this.backOnPressed,
+      this.iconColor,
+      this.hasFontResize = true,
+      this.hasColumnAdjust = false,
+      this.text = "HelpBar"});
 
   Widget goBackButton() {
     return IconButton(
@@ -76,18 +77,24 @@ class HelpBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: dropdown(context),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: goBackButton(),
-        ),
-      ],
+    var appState = context.watch<AppData>();
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: dropdown(context),
+          ),
+          Text(this.text, style: appState.h1TextStyle(context)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: goBackButton(),
+          ),
+        ],
+      ),
     );
   }
 }

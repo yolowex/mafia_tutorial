@@ -95,7 +95,7 @@ class ScenarioCard extends StatelessWidget {
               ),
               Text(
                 data.details,
-                style: appState.h2TextStyle(context),
+                style: appState.mainTextStyle(context),
                 maxLines: 3,
                 overflow: TextOverflow.fade,
               )

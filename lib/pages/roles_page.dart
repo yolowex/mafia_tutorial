@@ -15,12 +15,11 @@ class RolesPage extends StatelessWidget {
       child: Column(
         children: [
           HelpBar(
-            backOnPressed: () {
-              appState.currentPageId = PageEnum.main;
-            },
-            hasFontResize: false,
-            hasColumnAdjust: true,
-          ),
+              backOnPressed: () {
+                appState.currentPageId = PageEnum.main;
+              },
+              hasColumnAdjust: true,
+              text: "نقش ها"),
           const Divider(height: 25),
           Expanded(
               child: GridView.count(

@@ -60,14 +60,6 @@ class RoleCard extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   splashColor: cardData.side.color.withAlpha(125),
-                  onLongPress: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return PictureDialog(cardData);
-                      },
-                    );
-                  },
                   onTap: () {
                     showDialog(
                         context: context,

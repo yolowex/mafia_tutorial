@@ -127,10 +127,10 @@ class App extends StatelessWidget {
     final document = XmlDocument.parse(xml);
     var t = document.getElement("roles")!;
 
-    if (appState.rolesList.isNotEmpty){
+    if (appState.rolesList.isNotEmpty) {
       return;
     }
-    
+
     for (final role in t.children) {
       if (role.getElement("name") != null) {
         var name = role.getElement("name")!.innerText;

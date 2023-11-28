@@ -5,8 +5,8 @@ import 'package:mafia_tutorial/help_bar.dart';
 import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
 
-class RulesPage extends StatelessWidget {
-  const RulesPage({super.key});
+class MoralsPage extends StatelessWidget {
+  const MoralsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,10 @@ class RulesPage extends StatelessWidget {
         child: Column(
           children: [
             HelpBar(
-              backOnPressed: () {
-                appState.currentPageId = PageEnum.main;
-              },
-              text: "قوانین مافیا",
-            ),
+                backOnPressed: () {
+                  appState.currentPageId = PageEnum.main;
+                },
+                text: "مرام نامه مافیا"),
             const Divider(height: 25),
             Expanded(
               child: ListView(

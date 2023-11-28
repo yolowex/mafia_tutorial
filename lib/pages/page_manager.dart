@@ -3,9 +3,12 @@ import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/help_bar.dart';
 import 'package:mafia_tutorial/main.dart';
+import 'package:mafia_tutorial/pages/idioms_page.dart';
+import 'package:mafia_tutorial/pages/morales_page.dart';
 import 'package:mafia_tutorial/pages/roles_page.dart';
 import 'package:mafia_tutorial/pages/rules_page.dart';
 import 'package:mafia_tutorial/pages/scenarios_page.dart';
+import 'package:mafia_tutorial/pages/techniques_page.dart';
 import 'package:provider/provider.dart';
 
 import '../main_button.dart';
@@ -37,9 +40,15 @@ class _PageManagerState extends State<PageManager> {
             MainButton("نقش ها", () {
               appState.currentPageId = PageEnum.roles;
             }),
-            MainButton("مرام نامه مافیا", null),
-            MainButton("اصطلاحات", null),
-            MainButton("تکنیک ها", null),
+            MainButton("اصطلاحات", () {
+              appState.currentPageId = PageEnum.idioms;
+            }),
+            MainButton("تکنیک های آموزشی", () {
+              appState.currentPageId = PageEnum.techniques;
+            }),
+            MainButton("مرام نامه مافیا", () {
+              appState.currentPageId = PageEnum.morals;
+            }),
           ],
         ),
       ),
@@ -57,6 +66,12 @@ class _PageManagerState extends State<PageManager> {
       currentPage = ScenariosPage();
     } else if (appState.currentPageId == PageEnum.roles) {
       currentPage = RolesPage();
+    } else if (appState.currentPageId == PageEnum.idioms) {
+      currentPage = IdiomsPage();
+    } else if (appState.currentPageId == PageEnum.morals) {
+      currentPage = MoralsPage();
+    } else if (appState.currentPageId == PageEnum.techniques) {
+      currentPage = TechniquesPage();
     } else {
       currentPage = mainPage(context);
     }

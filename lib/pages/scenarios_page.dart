@@ -41,7 +41,7 @@ class ScenariosPage extends StatelessWidget {
               backOnPressed: () {
                 appState.currentPageId = PageEnum.main;
               },
-              hasFontResize: false,
+              text: "سناریو ها",
             ),
             const Divider(height: 25),
             Expanded(

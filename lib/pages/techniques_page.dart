@@ -5,8 +5,8 @@ import 'package:mafia_tutorial/help_bar.dart';
 import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
 
-class RulesPage extends StatelessWidget {
-  const RulesPage({super.key});
+class TechniquesPage extends StatelessWidget {
+  const TechniquesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class RulesPage extends StatelessWidget {
               backOnPressed: () {
                 appState.currentPageId = PageEnum.main;
               },
-              text: "قوانین مافیا",
+              text: "تکنیک های آموزشی",
             ),
             const Divider(height: 25),
             Expanded(

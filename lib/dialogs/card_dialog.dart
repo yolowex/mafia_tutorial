@@ -76,7 +76,7 @@ class CardDialog extends StatelessWidget {
               ),
               Text(
                 cardData.details,
-                style: appState.h2TextStyle(context),
+                style: appState.mainTextStyle(context),
               )
             ],
           ),
