@@ -147,8 +147,6 @@ class App extends StatelessWidget {
         appState.rolesList.add(roleData);
       }
     }
-
-    print('oh boy');
   }
 
   @override

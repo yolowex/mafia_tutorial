@@ -16,20 +16,20 @@ import '../main_button.dart';
 class PageManager extends StatefulWidget {
   PageManager({super.key});
 
-  PageEnum _currentPageId = PageEnum.main;
-
   @override
   State<PageManager> createState() => _PageManagerState();
 }
 
 class _PageManagerState extends State<PageManager> {
+  PageEnum _currentPageId = PageEnum.main;
+
   PageEnum get currentPageId {
-    return widget._currentPageId;
+    return _currentPageId;
   }
 
   set currentPageId(PageEnum newValue) {
     setState(() {
-      widget._currentPageId = newValue;
+      _currentPageId = newValue;
     });
   }
 
@@ -73,7 +73,7 @@ class _PageManagerState extends State<PageManager> {
 
   @override
   Widget build(BuildContext context) {
-    Widget currentPage;
+    Widget? currentPage;
     var appState = context.watch<AppData>();
     appState.onBackPressed ??= onBackPressed;
 
@@ -101,8 +101,10 @@ class _PageManagerState extends State<PageManager> {
       currentPage = TechniquesPage(
         onBackPressed: onBackPressed,
       );
-    } else {
+    } else if (currentPageId == PageEnum.main) {
       currentPage = mainPage(context);
+    } else {
+      throw Exception("No bro.. you failed! $currentPage");
     }
 
     return Container(
