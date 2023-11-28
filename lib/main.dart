@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main_button.dart';
+import 'package:mafia_tutorial/role_card.dart';
 import 'package:provider/provider.dart';
 import 'package:mafia_tutorial/pages/page_manager.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
@@ -22,18 +23,8 @@ class AppEntry extends StatefulWidget {
 }
 
 class _AppEntryState extends State<AppEntry> {
-  Future<String> loadAsset() async {
-    return await rootBundle.loadString('assets/data/roles.xml');
-  }
-
-  void doAsync() async {
-    String xml = await loadAsset();
-    final document = XmlDocument.parse(xml);
-  }
-
   @override
   void initState() {
-    doAsync();
     super.initState();
   }
 
@@ -47,6 +38,8 @@ class _AppEntryState extends State<AppEntry> {
 }
 
 class AppData extends ChangeNotifier {
+  List<CardData> rolesList = [];
+
   (DropdownEnum, String) fontResize =
       (DropdownEnum.changeFontSize, "تنظیم اندازه متن");
 
@@ -119,10 +112,46 @@ class AppData extends ChangeNotifier {
 }
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+
+  bool didLoadAssets = false;
+
+  Future<String> loadAsset() async {
+    return await rootBundle.loadString('assets/data/mafia_roles.xml');
+  }
+
+  void doAsync(BuildContext context) async {
+    var appState = context.watch<AppData>();
+    String xml = await loadAsset();
+    final document = XmlDocument.parse(xml);
+    var t = document.getElement("roles")!;
+    for (final role in t.children) {
+      if (role.getElement("name") != null) {
+        var name = role.getElement("name")!.innerText;
+        var side = role.getElement("side")!.innerText;
+        var picName = role.getElement("picName")!.innerText;
+        var details = role.getElement("details")!.innerText;
+
+        CardData roleData = CardData(
+          name: name,
+          side: MafiaSideEnum.getWithString(side),
+          picPath: "assets/images/roles/$picName",
+          details: details,
+        );
+        appState.rolesList.add(roleData);
+      }
+    }
+
+    print('oh boy');
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (!didLoadAssets) {
+      doAsync(context);
+      didLoadAssets = true;
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),

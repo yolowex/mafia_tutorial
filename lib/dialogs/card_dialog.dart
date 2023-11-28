@@ -33,7 +33,7 @@ class CardDialog extends StatelessWidget {
             children: [
               DropCapText(
                 style: appState.mainTextStyle(context),
-                loremIpsum(words: 100, paragraphs: 4),
+                cardData.details,
                 dropCap: DropCap(
                   width: 130,
                   height: 130,

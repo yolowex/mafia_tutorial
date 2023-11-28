@@ -6,13 +6,13 @@ import 'dialogs/picture_dialog.dart';
 
 class CardData {
   final String name;
-  final String? details;
+  final String details;
   final MafiaSideEnum side;
   final String picPath;
 
   const CardData({
     required this.name,
-    this.details,
+    required this.details,
     required this.side,
     this.picPath = "assets/images/pic.jpg",
   });
@@ -35,12 +35,7 @@ class RoleCard extends StatelessWidget {
             image: AssetImage(cardData.picPath), fit: BoxFit.fill),
       ),
       child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
+        borderRadius: BorderRadius.circular(20),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [

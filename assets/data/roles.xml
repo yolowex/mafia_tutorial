@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <roles>
-    <role side="مافیا">
-        <name>Godfather</name>
-
-        <details>
-
-        </details>
-    </role>
-
-    <role side="mafia">
-        <name>Mafia</name>
-
-        <details>
-
-        </details>
-    </role>
-
-    <role side="بله">
-        <name>Dr. Lecter</name>
-
-        <details>
-
-        </details>
-    </role>
-
-    <role side="mafia">
-        <name>Nato</name>
-
-        <details>
-
-        </details>
-    </role>
-
 
 </roles>
 

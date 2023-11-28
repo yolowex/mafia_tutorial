@@ -22,4 +22,19 @@ enum MafiaSideEnum {
 
   final Color color;
   const MafiaSideEnum(this.color);
+
+  static MafiaSideEnum getWithString(String key) {
+    if (key == MafiaSideEnum.mafia.name) {
+      return MafiaSideEnum.mafia;
+    }
+    if (key == MafiaSideEnum.citizens.name) {
+      return MafiaSideEnum.citizens;
+    }
+
+    if (key == MafiaSideEnum.independent.name) {
+      return MafiaSideEnum.independent;
+    } else {
+      throw Error();
+    }
+  }
 }
