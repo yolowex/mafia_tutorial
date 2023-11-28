@@ -126,6 +126,11 @@ class App extends StatelessWidget {
     String xml = await loadAsset();
     final document = XmlDocument.parse(xml);
     var t = document.getElement("roles")!;
+
+    if (appState.rolesList.isNotEmpty){
+      return;
+    }
+    
     for (final role in t.children) {
       if (role.getElement("name") != null) {
         var name = role.getElement("name")!.innerText;
@@ -157,7 +162,7 @@ class App extends StatelessWidget {
       localizationsDelegates: [
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
-        // GlobalWidgetsLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: [
         Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
