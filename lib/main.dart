@@ -39,6 +39,10 @@ class _AppEntryState extends State<AppEntry> {
 }
 
 class AppData extends ChangeNotifier {
+  String rulesText = "empty";
+  String moralsText = "empty";
+  String idiomsText = "empty";
+
   void Function()? _onBackPressed;
 
   void Function()? get onBackPressed {
@@ -124,6 +128,11 @@ class App extends StatelessWidget {
   void doAsync(BuildContext context) async {
     var appState = context.watch<AppData>();
     String xml = await loadAsset();
+
+    appState.rulesText = await rootBundle.loadString('assets/data/rules.txt');
+    appState.moralsText = await rootBundle.loadString('assets/data/morals.txt');
+    appState.idiomsText = await rootBundle.loadString('assets/data/idioms.txt');
+
     final document = XmlDocument.parse(xml);
     var t = document.getElement("roles")!;
 

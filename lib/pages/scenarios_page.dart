@@ -38,27 +38,31 @@ class ScenariosPage extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            HelpBar(
-              backOnPressed: () {
-                onBackPressed();
-              },
-              text: "سناریو ها",
-            ),
-            const Divider(height: 25),
-            Expanded(
-              child: ListView(
-                // padding: const EdgeInsets.symmetric(horizontal: 80),
-                children: [
-                  for (final item in scenariosList) ...[
-                    item,
-                    SizedBox(height: heightStep)
-                  ]
-                ],
+        child: Container(
+          color: Theme.of(context).cardColor.withAlpha(100),
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              HelpBar(
+                backOnPressed: () {
+                  onBackPressed();
+                },
+                text: "سناریو ها",
               ),
-            )
-          ],
+              const Divider(height: 25),
+              Expanded(
+                child: ListView(
+                  // padding: const EdgeInsets.symmetric(horizontal: 80),
+                  children: [
+                    for (final item in scenariosList) ...[
+                      item,
+                      SizedBox(height: heightStep)
+                    ]
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

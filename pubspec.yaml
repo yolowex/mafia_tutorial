@@ -36,8 +36,10 @@ flutter:
 
   assets:
     - assets/data/mafia_roles.xml
-    - assets/data/test.txt
     - assets/
+    - assets/data/idioms.txt
+    - assets/data/morals.txt
+    - assets/data/rules.txt
     - assets/images/
     - assets/images/roles/
     - assets/images/roles/default_role_picture.jpg

@@ -15,28 +15,35 @@ class RolesPage extends StatelessWidget {
     var appState = context.watch<AppData>();
 
     return SafeArea(
-      child: Column(
-        children: [
-          HelpBar(
-              backOnPressed: () {
-                onBackPressed();
-              },
-              hasColumnAdjust: true,
-              text: "نقش ها"),
-          const Divider(height: 25),
-          Expanded(
-              child: GridView.count(
-            primary: false,
-            padding: const EdgeInsets.all(10),
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 15,
-            crossAxisCount: appState.columnCount.toInt(),
-            children: <Widget>[
-              for (final cardData in appState.rolesList)
-                RoleCard(cardData: cardData)
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          color: Theme.of(context).cardColor.withAlpha(100),
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              HelpBar(
+                  backOnPressed: () {
+                    onBackPressed();
+                  },
+                  hasColumnAdjust: true,
+                  text: "نقش ها"),
+              const Divider(height: 25),
+              Expanded(
+                  child: GridView.count(
+                primary: false,
+                padding: const EdgeInsets.all(10),
+                crossAxisSpacing: 5,
+                mainAxisSpacing: 15,
+                crossAxisCount: appState.columnCount.toInt(),
+                children: <Widget>[
+                  for (final cardData in appState.rolesList)
+                    RoleCard(cardData: cardData)
+                ],
+              )),
             ],
-          )),
-        ],
+          ),
+        ),
       ),
     );
   }

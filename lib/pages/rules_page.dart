@@ -16,24 +16,30 @@ class RulesPage extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            HelpBar(
-              backOnPressed: () {
-                onBackPressed();
-              },
-              text: "قوانین مافیا",
-            ),
-            const Divider(height: 25),
-            Expanded(
-              child: ListView(
-                children: [
-                  Text(loremIpsum(words: 200),
-                      style: appState.mainTextStyle(context))
-                ],
+        child: Container(
+          color: Theme.of(context).cardColor.withAlpha(100),
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              HelpBar(
+                backOnPressed: () {
+                  onBackPressed();
+                },
+                text: "قوانین مافیا",
               ),
-            ),
-          ],
+              const Divider(height: 25),
+              Expanded(
+                child: ListView(
+                  children: [
+                    Text(
+                      appState.rulesText,
+                      style: appState.mainTextStyle(context),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
