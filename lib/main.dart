@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main_button.dart';
 import 'package:mafia_tutorial/role_card.dart';
@@ -153,6 +154,15 @@ class App extends StatelessWidget {
     }
 
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        // GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
+      ],
+      locale: Locale("fa", "IR"),
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       home: WillPopScope(

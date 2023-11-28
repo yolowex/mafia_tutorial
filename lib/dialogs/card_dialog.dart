@@ -19,7 +19,7 @@ class CardDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
-        height: 500,
+        // height: 500,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 7),
         decoration: BoxDecoration(
           color: Color.lerp(
@@ -30,59 +30,53 @@ class CardDialog extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              DropCapText(
-                style: appState.mainTextStyle(context),
-                cardData.details,
-                dropCap: DropCap(
-                  width: 130,
-                  height: 130,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 10, top: 5),
-                    child: Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Image.asset(
-                          cardData.picPath,
-                          fit: BoxFit.fill,
-                        ),
-                        Container(
-                          color: cardData.side.color.withAlpha(125),
-                          width: double.infinity,
-                          height: 35,
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(0.0),
-                          child: Text(
-                            cardData.name,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: cardData.side == MafiaSideEnum.citizens
-                                  ? Colors.black
-                                  : Colors.white,
-                            ),
-                          ),
-                        ),
-                        Positioned.fill(
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              splashColor: cardData.side.color.withAlpha(125),
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return PictureDialog(cardData);
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                        // Text(cardData.name),
-                      ],
+              Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Image.asset(
+                    cardData.picPath,
+                    fit: BoxFit.fill,
+                  ),
+                  Container(
+                    color: cardData.side.color.withAlpha(125),
+                    width: double.infinity,
+                    height: 35,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(0.0),
+                    child: Text(
+                      cardData.name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: cardData.side == MafiaSideEnum.citizens
+                            ? Colors.black
+                            : Colors.white,
+                      ),
                     ),
                   ),
-                ),
+                  Positioned.fill(
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: cardData.side.color.withAlpha(125),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return PictureDialog(cardData);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  // Text(cardData.name),
+                ],
+              ),
+              Text(
+                cardData.details,
+                style: appState.h2TextStyle(context),
               )
             ],
           ),
