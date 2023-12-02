@@ -8,7 +8,6 @@ import 'package:mafia_tutorial/pages/morales_page.dart';
 import 'package:mafia_tutorial/pages/roles_page.dart';
 import 'package:mafia_tutorial/pages/rules_page.dart';
 import 'package:mafia_tutorial/pages/scenarios_page.dart';
-import 'package:mafia_tutorial/pages/techniques_page.dart';
 import 'package:provider/provider.dart';
 
 import '../main_button.dart';
@@ -55,9 +54,6 @@ class _PageManagerState extends State<PageManager> {
             MainButton("اصطلاحات", () {
               currentPageId = PageEnum.idioms;
             }),
-            MainButton("تکنیک های آموزشی", () {
-              currentPageId = PageEnum.techniques;
-            }),
             MainButton("مرام نامه مافیا", () {
               currentPageId = PageEnum.morals;
             }),
@@ -95,10 +91,6 @@ class _PageManagerState extends State<PageManager> {
       );
     } else if (currentPageId == PageEnum.morals) {
       currentPage = MoralsPage(
-        onBackPressed: onBackPressed,
-      );
-    } else if (currentPageId == PageEnum.techniques) {
-      currentPage = TechniquesPage(
         onBackPressed: onBackPressed,
       );
     } else if (currentPageId == PageEnum.main) {
