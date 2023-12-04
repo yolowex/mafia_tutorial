@@ -23,17 +23,6 @@ class ScenariosPage extends StatelessWidget {
     var appState = context.watch<AppData>();
 
     double heightStep = 15;
-    List<ScenarioCard> scenariosList = [
-      ScenarioCard(ScenarioData("مافیا ساده"), () {}),
-      ScenarioCard(ScenarioData("پدرخوانده"), () {}),
-      ScenarioCard(ScenarioData("تفنگدار"), () {}),
-      ScenarioCard(ScenarioData("تروریست"), () {}),
-      ScenarioCard(ScenarioData("بازپرس"), () {}),
-      ScenarioCard(ScenarioData("مذاکره"), () {}),
-      ScenarioCard(ScenarioData("فراماسون"), () {}),
-      ScenarioCard(ScenarioData("گرگینه"), () {}),
-      ScenarioCard(ScenarioData("جوکر"), () {}),
-    ];
 
     return SafeArea(
       child: Padding(
@@ -54,7 +43,7 @@ class ScenariosPage extends StatelessWidget {
                 child: ListView(
                   // padding: const EdgeInsets.symmetric(horizontal: 80),
                   children: [
-                    for (final item in scenariosList) ...[
+                    for (final item in appState.scenariosList) ...[
                       item,
                       SizedBox(height: heightStep)
                     ]

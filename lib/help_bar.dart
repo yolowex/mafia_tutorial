@@ -42,7 +42,7 @@ class HelpBar extends StatelessWidget {
     return DropdownButton2(
       underline: const SizedBox.shrink(),
       isExpanded: false,
-      customButton: Icon(Icons.more_vert, color: iconColor),
+      customButton: Icon(Icons.menu, color: iconColor),
       items: [
         for (final item in newList)
           DropdownMenuItem<String>(

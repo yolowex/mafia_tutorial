@@ -1,6 +1,5 @@
 import 'package:drop_cap_text/drop_cap_text.dart';
 import 'package:flutter/material.dart';
-import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
@@ -9,22 +8,18 @@ class ScenarioData {
   final String name;
   final String picPath;
   late final String details;
-  late final int minPlayers;
-  late final int maxPlayers;
-  late final bool hasIndependent;
-  late final DifficultyLevel difficultyLevel;
+  late final String minPlayers;
+  late final String maxPlayers;
+  late final String hasIndependent;
+  late final String difficultyLevel;
 
-  ScenarioData(
-    this.name, {
-    this.picPath = "assets/images/pic.jpg",
-    details,
-  }) {
-    this.details = details ?? loremIpsum(words: 60);
-    minPlayers = 10;
-    maxPlayers = 15;
-    hasIndependent = false;
-    difficultyLevel = DifficultyLevel.easy;
-  }
+  ScenarioData(this.name,
+      {this.picPath = "assets/images/pic.jpg",
+      required this.details,
+      required this.minPlayers,
+      required this.maxPlayers,
+      required this.hasIndependent,
+      required this.difficultyLevel});
 
   String get scenarioText {
     return "سناریو: " + name;
@@ -38,69 +33,104 @@ class ScenarioData {
   }
 
   String get hasIndependentText {
-    String t = hasIndependent ? "دارد" : "ندارد";
-    return "ساید مستقل: " + t;
+    return "ساید مستقل: " + hasIndependent;
   }
 
   String get levelText {
-    return "سطح: " + difficultyLevel.text;
+    return "سطح: " + difficultyLevel;
   }
 }
 
-class ScenarioCard extends StatelessWidget {
+class ScenarioCard extends StatefulWidget {
   final ScenarioData data;
-  final void Function() onClick;
 
-  ScenarioCard(this.data, this.onClick);
+  ScenarioCard(this.data);
+
+  @override
+  State<ScenarioCard> createState() => _ScenarioCardState();
+}
+
+class _ScenarioCardState extends State<ScenarioCard> {
+  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<AppData>();
 
-    return Container(
-        decoration: BoxDecoration(
-            color: Theme.of(context).cardColor.withAlpha(200),
-            border: Border.all(width: 4),
-            borderRadius: BorderRadius.circular(15)),
-        child: Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 150,
-                    height: 150,
-                    child: Image.asset(data.picPath),
-                  ),
-                  Expanded(
-                    child: SizedBox(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(data.scenarioText,
-                              style: appState.h1TextStyle(context)),
-                          Text(data.playersCountText,
-                              style: appState.h1TextStyle(context)),
-                          Text(data.hasIndependentText,
-                              style: appState.h1TextStyle(context)),
-                          Text(data.levelText,
-                              style: appState.h1TextStyle(context)),
-                        ],
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              color: Theme.of(context).cardColor.withAlpha(200),
+              border: Border.all(width: 4),
+              borderRadius: BorderRadius.circular(15)),
+          child: Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: 140,
+                        height: 140,
+                        child: Image.asset(widget.data.picPath),
                       ),
                     ),
-                  )
-                ],
-              ),
-              Text(
-                data.details,
-                style: appState.mainTextStyle(context),
-                maxLines: 3,
-                overflow: TextOverflow.fade,
+                    Expanded(
+                      child: SizedBox(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(widget.data.scenarioText,
+                                style: appState.h1TextStyle(context)),
+                            Text(widget.data.playersCountText,
+                                style: appState.h1TextStyle(context)),
+                            Text(widget.data.hasIndependentText,
+                                style: appState.h1TextStyle(context)),
+                            Text(widget.data.levelText,
+                                style: appState.h1TextStyle(context)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Text(
+                  widget.data.details,
+                  style: appState.mainTextStyle(context),
+                  maxLines: isExpanded ? null : 3,
+                  overflow: TextOverflow.fade,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          left: 0,
+          bottom: 0,
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.black.withAlpha(125),
+                    borderRadius: BorderRadius.circular(15)),
+                child: IconButton(
+                    onPressed: () {
+                      isExpanded = !isExpanded;
+
+                      setState(() {});
+                    },
+                    icon: Icon(
+                      isExpanded ? Icons.expand_less : Icons.expand_more,
+                    )),
               )
             ],
           ),
-        ));
+        )
+      ],
+    );
   }
 }

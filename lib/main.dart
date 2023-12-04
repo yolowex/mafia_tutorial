@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/main_button.dart';
 import 'package:mafia_tutorial/role_card.dart';
+import 'package:mafia_tutorial/scenario_card.dart';
 import 'package:provider/provider.dart';
 import 'package:mafia_tutorial/pages/page_manager.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
@@ -39,6 +40,8 @@ class _AppEntryState extends State<AppEntry> {
 }
 
 class AppData extends ChangeNotifier {
+  List<ScenarioCard> scenariosList = [];
+
   String rulesText = "empty";
   String moralsText = "empty";
   String idiomsText = "empty";
@@ -131,6 +134,33 @@ class App extends StatelessWidget {
     appState.rulesText = await rootBundle.loadString('assets/data/rules.txt');
     appState.moralsText = await rootBundle.loadString('assets/data/morals.txt');
     appState.idiomsText = await rootBundle.loadString('assets/data/idioms.txt');
+
+    String xml = await loadXMLAsset("assets/data/scenarios.xml");
+
+    final document = XmlDocument.parse(xml);
+    var t = document.getElement("scenarios")!;
+    if (appState.scenariosList.isEmpty) {
+      for (final scenario in t.children) {
+        if (scenario.getElement("name") != null) {
+          var name = scenario.getElement("name")!.innerText;
+          var minPlayers = scenario.getElement("minPlayers")!.innerText;
+          var maxPlayers = scenario.getElement("maxPlayers")!.innerText;
+          var hasIndependent = scenario.getElement("hasIndependent")!.innerText;
+          var level = scenario.getElement("level")!.innerText;
+          var picName = scenario.getElement("picName")!.innerText;
+          var details = scenario.getElement("details")!.innerText;
+
+          ScenarioCard scenarioCard = ScenarioCard(ScenarioData(name,
+              picPath: "assets/images/roles/" + picName,
+              details: details,
+              minPlayers: minPlayers,
+              maxPlayers: maxPlayers,
+              difficultyLevel: level,
+              hasIndependent: hasIndependent));
+          appState.scenariosList.add(scenarioCard);
+        }
+      }
+    }
 
     List<String> assetsPath = [
       "assets/data/mafia_roles.xml",

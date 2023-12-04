@@ -1,0 +1,45 @@
+<scenarios>
+
+ <scenario>
+  <name>مافیا کلاسیک</name>
+  <minPlayers>۹</minPlayers>
+  <maxPlayers>۱۵</maxPlayers>
+  <hasIndependent>ندارد</hasIndependent>
+  <level>ساده</level>
+  <picName>mafia.jpeg</picName>
+  <details>details</details>
+ </scenario>
+
+<scenario>
+  <name>پدرخوانده (نوستراداموس)</name>
+  <minPlayers>۱۱</minPlayers>
+  <maxPlayers>۱۲</maxPlayers>
+  <hasIndependent>دارد</hasIndependent>
+  <level>متوسط</level>
+  <picName>nostradamus.jpg</picName>
+  <details>details</details>
+ </scenario>
+
+
+<scenario>
+  <name>پدرخوانده (جک)</name>
+  <minPlayers>۱۱</minPlayers>
+  <maxPlayers>۱۲</maxPlayers>
+  <hasIndependent>دارد</hasIndependent>
+  <level>پیشرفته</level>
+  <picName>jack.jpg</picName>
+  <details>details</details>
+ </scenario>
+
+<scenario>
+  <name>تفنگدار</name>
+  <minPlayers>۱۰</minPlayers>
+  <maxPlayers>۲۰</maxPlayers>
+  <hasIndependent>ندارد</hasIndependent>
+  <level>پیشرفته</level>
+  <picName>gunner.jpg</picName>
+  <details>details</details>
+ </scenario>
+
+
+</scenarios>
