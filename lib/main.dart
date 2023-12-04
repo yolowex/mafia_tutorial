@@ -121,39 +121,48 @@ class App extends StatelessWidget {
 
   bool didLoadAssets = false;
 
-  Future<String> loadAsset() async {
-    return await rootBundle.loadString('assets/data/mafia_roles.xml');
+  Future<String> loadXMLAsset(String path) async {
+    return await rootBundle.loadString(path);
   }
 
   void doAsync(BuildContext context) async {
     var appState = context.watch<AppData>();
-    String xml = await loadAsset();
 
     appState.rulesText = await rootBundle.loadString('assets/data/rules.txt');
     appState.moralsText = await rootBundle.loadString('assets/data/morals.txt');
     appState.idiomsText = await rootBundle.loadString('assets/data/idioms.txt');
 
-    final document = XmlDocument.parse(xml);
-    var t = document.getElement("roles")!;
+    List<String> assetsPath = [
+      "assets/data/mafia_roles.xml",
+      "assets/data/citizens_roles.xml",
+      "assets/data/independent_roles.xml"
+    ];
 
     if (appState.rolesList.isNotEmpty) {
       return;
     }
 
-    for (final role in t.children) {
-      if (role.getElement("name") != null) {
-        var name = role.getElement("name")!.innerText;
-        var side = role.getElement("side")!.innerText;
-        var picName = role.getElement("picName")!.innerText;
-        var details = role.getElement("details")!.innerText;
+    for (final path in assetsPath) {
+      String xml = await loadXMLAsset(path);
 
-        CardData roleData = CardData(
-          name: name,
-          side: MafiaSideEnum.getWithString(side),
-          picPath: "assets/images/roles/$picName",
-          details: details,
-        );
-        appState.rolesList.add(roleData);
+      final document = XmlDocument.parse(xml);
+      var t = document.getElement("roles")!;
+
+      for (final role in t.children) {
+        if (role.getElement("name") != null) {
+          var name = role.getElement("name")!.innerText;
+          var side = role.getElement("side")!.innerText;
+          var picName = role.getElement("picName")!.innerText;
+          var details = role.getElement("details")!.innerText;
+
+          CardData roleData = CardData(
+            name: name,
+            side: MafiaSideEnum.getWithString(side),
+            picPath: "assets/images/roles/$picName",
+            details: details,
+          );
+          appState.rolesList.add(roleData);
+        }
       }
     }
   }

@@ -1,0 +1,80 @@
+<roles>
+
+ <role>
+  <name>شهروند ساده</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>دکتر</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>کاٰرآگاه</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>حرفه ای</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>همشهری کین</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>کنستانتین</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>تفنگدار</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>محافظ</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>کابوی</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>اسنایپر</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>فرمانده</name>
+  <side>citizens</side>
+  <picName>default_role_picture.jpg</picName>
+  <details>details</details>
+ </role>
+
+</roles>

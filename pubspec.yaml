@@ -36,6 +36,8 @@ flutter:
 
   assets:
     - assets/data/mafia_roles.xml
+    - assets/data/citizens_roles.xml
+    - assets/data/independent_roles.xml
     - assets/
     - assets/data/idioms.txt
     - assets/data/morals.txt
