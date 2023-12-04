@@ -98,6 +98,7 @@ class _ScenarioCardState extends State<ScenarioCard> {
                     ),
                   ],
                 ),
+                Divider(),
                 Text(
                   widget.data.details,
                   style: appState.mainTextStyle(context),
