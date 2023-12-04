@@ -1,23 +1,16 @@
 <roles>
 
  <role>
-  <name>کیلر</name>
-  <side>independent</side>
-  <picName>default_role_picture.jpg</picName>
-  <details>details</details>
- </role>
-
- <role>
   <name>جک</name>
   <side>independent</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>jack.jpg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>نوستراداموس</name>
   <side>independent</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>nostradamus.jpg</picName>
   <details>details</details>
  </role>
 

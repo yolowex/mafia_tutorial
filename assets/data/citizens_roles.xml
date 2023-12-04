@@ -3,77 +3,84 @@
  <role>
   <name>شهروند ساده</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>citizen.jpeg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>دکتر</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>dr.jpeg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>کاٰرآگاه</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>detective.jpg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>حرفه ای</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>leon.jpg</picName>
+  <details>details</details>
+ </role>
+
+ <role>
+  <name>جان سخت</name>
+  <side>citizens</side>
+  <picName>jan_sakht.jpeg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>همشهری کین</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>mr_kane.jpg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>کنستانتین</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>constantine.jpeg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>تفنگدار</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>gunner.jpg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>محافظ</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>bodyguard.jpeg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>کابوی</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>cowboy.jpeg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>اسنایپر</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>sniper.jpg</picName>
   <details>details</details>
  </role>
 
  <role>
   <name>فرمانده</name>
   <side>citizens</side>
-  <picName>default_role_picture.jpg</picName>
+  <picName>boss.jpeg</picName>
   <details>details</details>
  </role>
 
