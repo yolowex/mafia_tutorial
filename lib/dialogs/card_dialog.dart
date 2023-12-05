@@ -60,7 +60,7 @@ class CardDialog extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(
                         splashColor: cardData.side.color.withAlpha(125),
-                        onTap: () {
+                        onLongPress: () {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {

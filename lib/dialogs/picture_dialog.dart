@@ -16,6 +16,7 @@ class PictureDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       child: PhotoView(
+        enablePanAlways: true,
         backgroundDecoration: const BoxDecoration(color: Colors.transparent),
         imageProvider: AssetImage(cardData.picPath),
       ),
