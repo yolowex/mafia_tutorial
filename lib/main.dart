@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:mafia_tutorial/pages/page_manager.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:xml/xml.dart';
-import 'dart:io';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
@@ -65,7 +64,6 @@ class AppData extends ChangeNotifier {
       (DropdownEnum.adjustColumn, "تنظیم ستون");
 
   List<(DropdownEnum, String)> dropdownMenuList = [
-    (DropdownEnum.buyVip, "خرید نسخه وی ای پی"),
     (DropdownEnum.shareApp, "پیشنهاد برنامه به دیگران"),
   ];
 

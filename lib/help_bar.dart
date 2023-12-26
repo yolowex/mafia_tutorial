@@ -5,6 +5,7 @@ import 'package:mafia_tutorial/enums.dart';
 import 'package:mafia_tutorial/dialogs/font_dialog.dart';
 import 'package:mafia_tutorial/main.dart';
 import 'package:provider/provider.dart';
+// import 'package:share_plus/share_plus.dart';
 
 class HelpBar extends StatelessWidget {
   final void Function() backOnPressed;
@@ -70,6 +71,9 @@ class HelpBar extends StatelessWidget {
             context: context,
             builder: (BuildContext context) => ColumnAdjustDialog(),
           );
+        }
+        if (selected == DropdownEnum.shareApp.name) {
+          // Share.share("whats up!");
         }
       },
     );

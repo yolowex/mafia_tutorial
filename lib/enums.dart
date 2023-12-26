@@ -11,7 +11,6 @@ enum PageEnum {
 
 enum DropdownEnum {
   changeFontSize,
-  buyVip,
   shareApp,
   adjustColumn,
 }
